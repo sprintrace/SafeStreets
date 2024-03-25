@@ -22,8 +22,8 @@ Age <- read_excel("data/raw_data/Age.xlsx")
 View(Age)  
 
 #5
-RaceAndGunlaw <- read_excel("data/raw_data/Race.xlsx")
-View(RaceAndGunlaw)  
+Race <- read_excel("data/raw_data/Race.xlsx")
+View(Race)  
 
 
 
@@ -193,6 +193,71 @@ Age <- Age |>
 #names(RaceAndGunlaw) <- c("Year", "White", "Black", "Other")
 
 
+
+
+
+
+
+##  5
+
+Race <- Race |>
+  slice(7:10)
+Race[1,1]<-"Year"
+names(Race)[1]<-"C1"
+
+## New line
+#names(RaceAndGunlaw)[1]<-"Year"
+#names(RaceAndGunlaw)[2]<-"White"
+#names(RaceAndGunlaw)[3]<-"Black"
+#names(RaceAndGunlaw)[4]<-"Other"
+
+#### PIVOT LONGER ####
+
+Race <- Race[-1] |> t() |> as.data.frame()
+names(Race) <- c("Year", "White", "Black", "Other")
+
+
+##### New lines to fix the num in brackets #####
+
+Race$'White' <- sapply(Race$'White', function(x) { gsub("[\r\n]", "", x) })
+Race[c('White',' ')] <- str_split_fixed(Race$'White', ' ', 2)  # Assuming space separates values
+
+# BLACK
+
+Race$'Black' <- sapply(Race$'Black', function(x) { gsub("[\r\n]", "", x) })
+Race[c('Black',' ')] <- str_split_fixed(Race$'Black', ' ', 2)  # Assuming space separates values
+
+# Others
+
+Race$'Other' <- sapply(Race$'Other', function(x) { gsub("[\r\n]", "", x) })
+Race[c('Other',' ')] <- str_split_fixed(Race$'Other', ' ', 2)  # Assuming space separates values
+
+
+#### remove the unwanted collumbs ####
+Race <- Race |>
+  select(c("Year","White","Black","Other"))
+
+### LINE IS REDUNDANT
+#names(RaceAndGunlaw) <- c("Year", "White", "Black", "Other")
+
+
+
+
+
+
+
+
+#### Save data #### 
+
+write_csv(Gunlaw, "data/analysis_data/Gunlaw.csv")
+
+write_csv(GenderAndGunPermit, "data/analysis_data/GenderAndGunPermit.csv")
+
+write_csv(GunlawHighestDegree, "data/analysis_data/GunlawHighestDegree.csv")
+
+write_csv(GunlawRepVsDem, "data/analysis_data/GunlawRepVsDem.csv")
+
+write_csv(RaceAndGunlaw, "data/analysis_data/RaceAndGunlaw.csv")
 
 
 
