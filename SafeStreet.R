@@ -249,15 +249,15 @@ Race <- Race |>
 
 #### Save data #### 
 
-write_csv(Gunlaw, "data/analysis_data/Gunlaw.csv")
+write_csv(fear, "data/analysis_data/fear.csv")
 
-write_csv(GenderAndGunPermit, "data/analysis_data/GenderAndGunPermit.csv")
+write_csv(Gender, "data/analysis_data/Gender.csv")
 
-write_csv(GunlawHighestDegree, "data/analysis_data/GunlawHighestDegree.csv")
+write_csv(Health, "data/analysis_data/Health.csv")
 
-write_csv(GunlawRepVsDem, "data/analysis_data/GunlawRepVsDem.csv")
+write_csv(Age, "data/analysis_data/Age.csv")
 
-write_csv(RaceAndGunlaw, "data/analysis_data/RaceAndGunlaw.csv")
+write_csv(Race, "data/analysis_data/Race.csv")
 
 
 
