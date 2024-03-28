@@ -1,6 +1,7 @@
 #### Workspace setup ####
 library(tidyverse)
 library(readxl)
+library(arrow)
 
 #### Clean data ####
 #### get from excel
@@ -248,6 +249,9 @@ Race <- Race |>
 
 
 #### Save data #### 
+
+####################### MUST BE PARQUET FILE NOW ##
+
 
 write_csv(fear, "data/analysis_data/fear.csv")
 
